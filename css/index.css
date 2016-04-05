@@ -76,6 +76,10 @@ input{
     margin-bottom: 15px;
 }
 
+input[type="checkbox"] {
+    width: 20%;
+  }
+
 .calc_checkbox{
     display: block;
     width: 100%;
