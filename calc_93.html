@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Прогнозируемая скорость выдоха </div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            <main>
+            
+			<script>
+			
+			
+				function calculation() {
+				
+				 var 
+				  text,
+				  result,
+				  A = Number(document.getElementById('A').value), 
+				  B = Number(document.getElementById('B').value),
+				  C = Number(document.getElementById('C').value), 
+				  D = Number(document.getElementById('D').value), 
+				  p = 1,
+				
+				Percent = Number(document.getElementById('Percent').value);
+				
+				 
+				 
+				 var pr = 0; var lo = 0; var div = 0; 
+				 if (p == 2) { D = D * 2.54; } 
+				 if (A == 1) { if (B < 20) 
+				 { arr = new Array (-0.5962, -0.12357, 0.013135, 0.00024962, 0.00017635, -0.2684, -0.28016, 0.018202, 0.00027333, 0.00018938, -0.9537, -0.19602, 0.014497, 0.00030243, 0.00021833); } 
+				 else { arr = new Array (1.0523, 0.08272, -0.001301, 0.00024962, 0.00017635, 2.2257, 0.04082, 0, 0.00027333, 0.00018938, 0.087, 0.0658, -0.001195, 0.00030243, 0.00021833); } } 
+				 else { if (B < 18) { arr = new Array (-3.6181, 0.60644, -0.016846, 0.00018623, 0.00012148, -1.2398, 0.16375, 0, 0.00019746, 0.0001216, -3.2549, 0.47495, -0.013193, 0.00022203, 0.00014611); } 
+				 else { arr = new Array (0.9267, 0.06929, -0.001031, 0.00018623, 0.00012148, 1.3597, 0.03458, -0.000847, 0.00019746, 0.0001216, 0.2401, 0.06174, -0.001023, 0.00022203, 0.00014611); } } 
+				 i = C - 1; 
+				 var a = (arr[i*5+0]) + (arr[i*5+1]) * B + (arr[i*5+2]) * (B * B); pr = (a + (arr[i*5+3]) * (D * D)) * 60; lo = (a + (arr[i*5+4]) * (D * D)) * 60; 
+				 pr = Math.round (pr); 
+				 lo = Math.round (lo); 
+				 div = (pr / 100) * (95 - (5 * Percent)); 
+				 div = Math.round (div); 
+				 
+				 
+				  if (B < 8 || B > 80) 
+				 { text='Возраст должен быть от 8 до 80 лет'} 
+				 else {
+				text='Максимальная скорость выдоха (прогнозируемая): '+pr+'<br>'+'Максимальная скорость выдоха (нижняя граница): '+lo+'<br>'+'Прогнозируемый %: '+div; 
+				} 
+				 
+				
+				document.getElementById('result-score').innerHTML  =text;
+				//document.getElementById('result-text').innerHTML  = ;
+				}
+				
+				
+				function reset() {
+				document.getElementById('result-score').innerHTML  = 'Результат';
+				document.getElementById('result-text').innerHTML  = '';
+				document.getElementById('A').value='';
+				document.getElementById('B').value='';
+				document.getElementById('C').value='';
+				document.getElementById('D').value='';
+				document.getElementById('Percent').value='';
+				}
+				
+			</script>
+  
+				<div class='select_wrapper' >
+                    <label for='A'>Пол</label>
+                    <select name='A' id='A'>
+                        <option value='1'>Мужской</option>
+                        <option value='2'>Женский</option>
+                    </select>
+                </div>
+				
+				<div class='input_wrapper'>
+                    <label for='B'>Возраст, лет</label>
+                    <input name="B" id="B" min="8" max="80" type="number" value="" />
+                </div>
+				
+				<div class='select_wrapper' >
+                    <label for='C'>Расовая принадлежность</label>
+                    <select name='C' id='C'>
+                        <option value="1">Представитель европеоидной расы </option>
+						<option value="2">Афроамериканец </option>
+						<option value="3">Мексикано-американец </option>
+                    </select>
+                </div>
+  
+				<div class='input_wrapper'>
+                    <label for='D'>Рост, см</label>
+                    <input name="D" id="D" min="8" max="80" type="number" value="" />
+                </div>
+  
+				<div class='select_wrapper' >
+                    <label for='Percent'>Показать значение для</label>
+                    <select name='Percent' id='Percent'>
+                        <option value="1">90 % </option>
+						<option value="2">85 % </option>
+						<option value="3">80 % </option>
+						<option value="4">75 % </option>
+						<option value="5">70 % </option>
+						<option value="6">65 % </option>
+						<option value="7">60 % </option>
+						<option value="8">55 % </option>
+						<option value="9">50 % </option>
+						<option value="10">45 % </option>
+						<option value="11">40 % </option>
+						<option value="12">35 % </option>
+						<option value="13">30 % </option>
+						<option value="14">25 % </option>
+                    </select>
+                </div>	
+  
+  
+
+			
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'></div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+		
+    </body>
+</html>

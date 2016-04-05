@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+     <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Отношение емкости закрытия к общей емкости легких</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            <main>
+            
+			<script>
+				function calculation() {
+				var 
+				i1 = Number(document.getElementById('i1').value),
+				i2 = Number(document.getElementById('i2').value),
+				i3 = Number(document.getElementById('i3').value),
+				i4 = Number(document.getElementById('i4').value),
+				i5 = Number(document.getElementById('i5').value),			
+				text,
+				result1 = 0.001 * (i1+i2+i3+i4),
+				result2 = 0.001 *  (i5+i4),
+				result3 = 100 * (result2 / result1);
+
+				
+				text= 'Общая емкость легких '+result1.toFixed(2) +'л<br>'+'Емкость закрытия '+result2.toFixed(2) +'л<br>'+'ОЕЛ/ЕЗ '+result3.toFixed(0) +'%';
+				document.getElementById('result-score').innerHTML = text;
+				document.getElementById('result-text').innerHTML  = '';
+				
+				}
+				
+				function reset() {
+				document.getElementById('result-score').innerHTML  = 'Результат';
+				document.getElementById('result-text').innerHTML  = '';
+				document.getElementById('i1').value='';
+				document.getElementById('i2').value='';
+				document.getElementById('i3').value='';
+				document.getElementById('i4').value='';
+				document.getElementById('i5').value='';
+				}
+				
+			</script>
+  
+                <div class='input_wrapper'>
+                    <label for='i1'>Резервный объем вдоха, мл</label>
+                    <input name="i1" id="i1" min="0" type="number" value="" />
+                </div>
+                <div class='input_wrapper'>
+                    <label for='i2'>Дыхательный объем, мл</label>
+                    <input name="i2" id="i2" min="0" type="number" value="" />
+                </div>
+				<div class='input_wrapper'>
+                    <label for='i3'>Резервный объем выдоха, мл</label>
+                    <input name="i3" id="i3" min="0" type="number" value="" />
+                </div>
+                <div class='input_wrapper'>
+                    <label for='i4'>Остаточный объем, мл</label>
+                    <input name="i4" id="i4" min="0" type="number" value="" />
+                </div>
+				<div class='input_wrapper'>
+                    <label for='i5'>Объем закрытия, мл</label>
+                    <input name="i5" id="i5" min="0" type="number" value="" />
+                </div>
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'></div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+		
+    </body>
+
+</html>
