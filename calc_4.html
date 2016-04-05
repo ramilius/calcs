@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Шкала GRACE</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			<script>
+				function calculation() {
+				var 
+				cell_1 = Number(document.getElementById('cell-1').value),
+				cell_2 = Number(document.getElementById('cell-2').value),
+				cell_3 = Number(document.getElementById('cell-3').value),
+				cell_4 = Number(document.getElementById('cell-4').value),
+				cell_5 = Number(document.getElementById('cell-5').value),
+				cell_6 = Number(document.getElementById('cell-6').value),
+				cell_7 = Number(document.getElementById('cell-7').value),
+				cell_8 = Number(document.getElementById('cell-8').value),
+				text,
+		        	result,
+				attribute_1,
+				attribute_2,
+				attribute_3,
+				attribute_4,
+				attribute_5,
+				attribute_6,
+				attribute_7,
+				attribute_8;
+
+				//attribute_1
+				if (cell_1 < 30){ attribute_1 = 0; }
+				if ((cell_1 >= 30)&&(cell_1 < 40)) { attribute_1 = 8;}
+				if ((cell_1 >= 40)&&(cell_1 < 50)) { attribute_1 = 25;}
+				if ((cell_1 >= 50)&&(cell_1 < 60)) { attribute_1 = 41;}
+				if ((cell_1 >= 60)&&(cell_1 < 69)) { attribute_1 = 58;}
+				if ((cell_1 >= 70)&&(cell_1 < 79)) { attribute_1 = 75;}
+				if ((cell_1 >= 80)&&(cell_1 < 90)) { attribute_1 = 91;}
+				if (cell_1 >= 90){ attribute_1 = 100;}
+				
+				//attribute_2
+				if (cell_2 < 50){ attribute_2 = 0; }
+				if ((cell_2 >= 50)&&(cell_2 < 70)) { attribute_2 = 3;}
+				if ((cell_2 >= 70)&&(cell_2 < 90)) { attribute_2 = 9;}
+				if ((cell_2 >= 90)&&(cell_2 < 110)) { attribute_2 = 15;}
+				if ((cell_2 >= 110)&&(cell_2 < 150)) { attribute_2 = 24;}
+				if ((cell_2 >= 150)&&(cell_2 < 200)) { attribute_2 = 38;}
+				if (cell_2 >= 200){ attribute_2 = 46;}
+
+				//attribute_3
+				if (cell_3 < 80){ attribute_3 = 58; }
+				if ((cell_3 >= 80)&&(cell_3 < 100)) { attribute_3 = 53;}
+				if ((cell_3 >= 100)&&(cell_3 < 120)) { attribute_3 = 43;}
+				if ((cell_3 >= 120)&&(cell_3 < 140)) { attribute_3 = 34;}
+				if ((cell_3 >= 140)&&(cell_3 < 160)) { attribute_3 = 24;}
+				if ((cell_3 >= 160)&&(cell_3 < 200)) { attribute_3 = 10;}
+				if (cell_3 >= 200){ attribute_3 = 0;}
+				
+				//attribute_4
+				if (cell_4 < 35){ attribute_4 = 1; }
+				if ((cell_4 >= 35)&&(cell_4 < 71)) { attribute_4 = 4;}
+				if ((cell_4 >= 71)&&(cell_4 < 106)) { attribute_4 = 7;}
+				if ((cell_4 >= 106)&&(cell_4 < 141)) { attribute_4 = 10;}
+				if ((cell_4 >= 141)&&(cell_4 < 176)) { attribute_4 = 13;}
+				if ((cell_4 >= 177)&&(cell_4 < 354)) { attribute_4 = 21;}
+				if (cell_4 >= 354){ attribute_4 = 28;}
+
+				//attribute_5
+				if (cell_5 == 1){ attribute_5 = 0; }
+				if (cell_5 == 2){ attribute_5 = 20;}
+				if (cell_5 == 3){ attribute_5 = 39;}
+				if (cell_5 == 4){ attribute_5 = 59;}
+
+				//attribute_6
+				if (cell_6 == 0){ attribute_6 = 0; }
+				if (cell_6 == 1){ attribute_6 = 39;}
+
+				//attribute_7
+				if (cell_7 == 0){ attribute_7 = 0; }
+				if (cell_7 == 1){ attribute_7 = 28;}
+
+				//attribute_8
+				if (cell_8 == 0){ attribute_8 = 0; }
+				if (cell_8 == 1){ attribute_8 = 14;}
+				
+				result = attribute_1 + attribute_2 + attribute_3 + attribute_4 + attribute_5 + attribute_6 +attribute_7 +attribute_8; 
+
+				if (result < 109) { text='Низкий риск – смертность менее 1%';}
+				else if ((result >=109)&&(result <= 140)) { text='Средний риск – смертность от 1% до 3% ';}
+				else if ((result > 140)) { text='Высокий риск – смертность более 3%';}
+
+				document.getElementById('result-score').innerHTML = result;
+				document.getElementById('result-text').innerHTML  = text;
+				
+				}
+				
+				function reset() {
+				document.getElementById('result-score').innerHTML  = 'Результат';
+				document.getElementById('result-text').innerHTML  = 'Риск';
+				document.getElementById('cell-1').value='';
+				document.getElementById('cell-2').value='';
+				document.getElementById('cell-3').value='';
+				document.getElementById('cell-4').value='';
+				document.getElementById('cell-5').value=0;
+				document.getElementById('cell-6').value=0;
+				document.getElementById('cell-7').value=0;
+				document.getElementById('cell-8').value=0;
+
+				}
+				
+			</script>
+  
+		<div class='input_wrapper'>
+                    <label for='cell-1'>Возраст (лет)</label>
+                    <input name="cell-1" id="cell-1" min="0" type="number" value="" />
+                </div>	
+
+		<div class='input_wrapper'>
+                    <label for='cell-2'>Частота сердечных сокращений (ударов/минуту)</label>
+                    <input name="cell-2" id="cell-2" min="0" type="number" value="" />
+                </div>		
+
+		<div class='input_wrapper'>
+                    <label for='cell-3'>Систолическое артериальное давление (мм рт. ст.)</label>
+                    <input name="cell-3" id="cell-3" min="0" type="number" value="" />
+                </div>	
+
+		<div class='input_wrapper'>
+                    <label for='cell-4'>Уровень креатинина сыворотки (мкмоль/л)</label>
+                    <input name="cell-4" id="cell-4" min="0" type="number" value="" />
+                </div>
+
+		<div class='select_wrapper'>
+                    <label for='select_1'>Класс сердечной недостаточности (по классификации Killip)</label>
+                    <select name='select_1' id='cell-5'>
+                        <option value='0'>Класс I</option>
+                        <option value='1'>Класс II</option>
+                        <option value='2'>Класс III</option>
+                        <option value='3'>Класс IV</option>
+                    </select>
+                </div>
+                <div class='select_wrapper'>
+                    <label for='select_1'>Остановка сердца (на момент поступления пациента)</label>
+                    <select name='select_1' id='cell-6'>
+                        <option value='0'>Нет</option>
+                        <option value='1'>Да</option>
+                    </select>
+                </div>
+                <div class='select_wrapper' >
+                    <label for='select_2'>Девиация сегмента ST</label>
+                    <select name='select_2' id='cell-7'>
+                        <option value='0'>Нет</option>
+                        <option value='1'>Да</option>
+                    </select>
+                </div>
+                <div class='select_wrapper' >
+                    <label for='select_3'>Наличие диагностически значимого повышения уровня кардиоспецифических ферментов</label>
+                    <select name='select_3' id='cell-8'>
+                        <option value='0'>Нет</option>
+                        <option value='1'>Да</option>
+                    </select>
+                </div>
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Риск</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

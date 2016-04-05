@@ -1,0 +1,108 @@
+body , html {
+	height: 100%;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 16px;
+	min-width: 310px;
+}
+.wrapper {
+	height: 100%;
+}
+header {
+    background: #2EAEC7;
+    color: #fff;
+}
+header i {
+	cursor: pointer;
+}
+.header_top_row {
+    font-weight: 400;
+    font-size: 18px;
+    padding: 8px 15px;
+    margin: 0;
+}
+.header_botttom_row ul {
+    padding: 0;
+    margin: 0;
+}
+.header_botttom_row ul li {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px 0;
+    border-bottom: 3px solid #2EAEC7;
+    cursor: pointer;
+}
+.header_botttom_row ul li.active {
+    border-bottom: 3px solid #B8DEE4;
+}
+main {
+    padding: 15px;
+    display: block;
+}
+label {
+    color: #AFAFAF;
+    margin-bottom: 10px;
+}
+select:focus, select:active , button:focus, button:active {
+	outline: none;
+}
+select {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #D0C9C9;
+    font-weight: bold;
+    padding: 0 0 6px 0;
+    margin: 0;
+}
+.select_wrapper {
+    margin-bottom: 15px;
+}
+footer {
+    background: #E0E0E0;
+    margin-top: -160px;
+    height: 160px;
+    padding: 15px;
+    position: relative;
+}
+.result_title {
+    color: #9C9C9C;
+    font-weight: bold;
+    font-size: 22px;
+}
+.result {
+    color: #9C9C9C;
+    font-size: 17px;
+}
+.button_row {
+	position: absolute;
+	bottom: 15px;
+	width: 100%;
+	padding: 0 7px;
+}
+.button_wrapper {
+	padding: 0 7px;
+}
+.button_row button {
+    width: 100%;
+    border: none;
+    background: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 7px 0;
+}
+button.result_button {
+    background: #2EAEC7;
+    color: #fff;
+}
+@media (max-width: 360px) {
+	.header_top_row {
+		font-size: 16px;
+	}
+}
+@media (max-width: 330px) { 
+	.header_top_row {
+		padding: 8px 5px;
+	}
+}
