@@ -5,7 +5,7 @@ body , html {
 	min-width: 310px;
 }
 .wrapper {
-	height: 100%;
+	padding-bottom: 30px;
 }
 header {
     background: #2EAEC7;
@@ -94,11 +94,15 @@ input[type="checkbox"] {
 
 footer {
     background: #E0E0E0;
-    margin-top: -160px;
-    height: 160px;
+    margin-top: 16px;
+    min-height: 160px;
     padding: 15px;
     position: relative;
+	bottom: 0;
+	width:100%; 
 }
+
+
 .result_title {
     color: #9C9C9C;
     font-weight: bold;
