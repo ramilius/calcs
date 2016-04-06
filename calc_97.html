@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+     <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Рецидив рака молочной железы (после мастэктомии)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            <main>
+            
+			<script>
+			
+				function calculation() {
+					var 
+					i,
+					result=0,
+					percent;
+				
+					for (i=1;i<4;i++){result=result+Number(document.getElementById('i'+i).value);}
+					if (result==16){percent='8.5';}
+					if (result==20){percent='12,5';}
+					if (result==22){percent='15.8';}
+					if (result==26){percent='10';}
+					if (result==28){percent='15.5';}
+					if (result==32){percent='33';}
+					if (result==34){percent='38.5';}
+					if (result==38){percent='48';}
+					document.getElementById('result-score').innerHTML  = 'Балл: '+result.toFixed(0);
+					document.getElementById('result-text').innerHTML  = 'Вероятность рецидива: ' +Number(percent).toFixed(1)+'%';
+				}
+				
+				
+				function reset() {
+					var i;
+					for (i=1;i<4;i++){document.getElementById('i'+i).value='';}
+				
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = '';
+				}
+				
+			</script>
+  
+                
+                <div class='select_wrapper' >
+                    <label for='select_1'>Стадия опухоли</label>
+                    <select name='select_1' id='i1'>
+                        <option value='6'>I</option>
+                        <option value='12'>II</option>
+                        <option value='18'>III</option>
+                    </select>
+                </div>
+				<div class='select_wrapper' >
+                    <label for='select_2'>Наличие метастазов в лимфоузлах</label>
+                    <select name='select_2' id='i2'>
+                        <option value='6'>Нет</option>
+                        <option value='12'>Да</option>
+                    </select>
+                </div>
+				<div class='select_wrapper' >
+                    <label for='select_3'>Лимфатическая или сосудистая инвазия</label>
+                    <select name='select_3' id='i3'>
+                        <option value='4'>Отсутствует</option>
+                        <option value='8'>Присутствует </option>
+                    </select>
+                </div>
+               
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'></div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+		
+    </body>
+
+</html>
