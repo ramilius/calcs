@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+     <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Ревматоидный артрит (критерии 1987 г., Американская ревматологическая ассоциация (ARA))</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            <main>
+            
+			<script>
+				function calculation() {
+				
+				var i, result=0;
+				for (i=1;i<8;i++) { if (document.getElementById('i'+i).checked) {result=result+1;}} 
+				
+				if (result<3) {text='Ревматоидный артрит маловероятен, не соответствует критериям';}
+				if (result==3) {text='Ревматоидный артрит не исключен, но не соответствует критериям';}
+				if (result>3) {text='Соответствует критериям ревматоидного артрита';}
+				
+				document.getElementById('result-text').innerHTML  = text;
+				}
+				
+				
+				function reset() {
+				document.getElementById('result-score').innerHTML  = 'Результат';
+				document.getElementById('result-text').innerHTML  = '';
+				var i;
+				for (i=1;i<8;i++){document.getElementById('i'+i).checked=false;}
+				}
+				
+			</script>
+  
+                <div class="calc_checkbox">
+				<div class='input_wrapper'>
+                    <label for='i1'>Утренняя ригидность (≥ 6 недель)</label>
+                    <input name="i1" id="i1" type="checkbox" value="" />
+					<label for='i2'>Артрит ≥ 3 суставов (≥ 6 недель)</label>
+                    <input name="i2" id="i2" type="checkbox" value="" />
+					<label for='i3'>Артрит суставов кисти (≥ 6 недель)</label>
+                    <input name="i3" id="i3" type="checkbox" value="" />
+					<label for='i4'>Симметричный артрит (≥ 6 недель) </label>
+                    <input name="i4" id="i4" type="checkbox" value="" />
+					<label for='i5'>Ревматоидные узелки</label>
+                    <input name="i5" id="i5" type="checkbox" value="" />
+					<label for='i6'>Ревматоидный фактор (в сыворотке крови)</label>
+                    <input name="i6" id="i6" type="checkbox" value="" />
+					<label for='i7'>Изменения на рентгенограмме</label>
+                    <input name="i7" id="i7" type="checkbox" value="" />
+                </div>
+				</div>
+               
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'></div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+		
+    </body>
+
+</html>
