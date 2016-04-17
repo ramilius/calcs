@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Скорость клубочковой фильтрации по формулам MDRD и Schwartz</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			<script>
+				function calculation() {
+				var 
+				id1 = Number(document.getElementById('id1').value),
+				id2 = Number(document.getElementById('id2').value),
+				id3 = Number(document.getElementById('id3').value),
+				id4 = Number(document.getElementById('id4').value),
+				id5 = Number(document.getElementById('id5').value),
+				id6 = Number(document.getElementById('id6').value),
+				text,
+				result = 0;
+			
+				if(id2 > 18){		
+					result = 175 * Math.pow((id4*id6/88.4),-1.154) * Math.pow(id2,-0.203) * id1 * id5;
+				}
+				else if(id2 <= 18){
+					result = (36.2 * id3) / id4;
+				}
+
+				if(result >= 90){ text = 'Стадия ХБП: I при наличии факторов риска или повреждение почек с нормальной почечной функцией' }
+				else if((result >= 60)&&(result < 90)){ text = 'Стадия ХБП: II'; }
+				else if((result >= 45)&&(result < 60)){ text = 'Стадия ХБП: IIIa'; }
+				else if((result >= 30)&&(result < 45)){ text = 'Стадия ХБП: IIIb'; }
+				else if((result >= 15)&&(result < 29)){ text = 'Стадия ХБП: IV'; }
+				else if((result < 15)){ text = 'Стадия ХБП: V'; }
+
+				document.getElementById('result-score').innerHTML = result;
+				document.getElementById('result-text').innerHTML  = text;
+				
+				}
+				
+				function reset() {
+				document.getElementById('result-score').innerHTML  = 'Результат';
+				document.getElementById('result-text').innerHTML  = 'мл/мин/1.73 м2';
+				document.getElementById('id1').value=1;
+				document.getElementById('id2').value='';
+				document.getElementById('id3').value='';
+				document.getElementById('id4').value='';
+				document.getElementById('id5').value=1;
+				document.getElementById('id6').value=1;
+				}
+				
+			</script>
+  
+                <div class='select_wrapper'>
+                    <label for='select_1'>Пол</label>
+                    <select name='select_1' id='id1'>
+                        <option value='1'>Мужской</option>
+                        <option value='0.742'>Женский</option>
+                    </select>
+                </div>
+             	<div class='input_wrapper'>
+                    <label for='id2'>Возраст, лет</label>
+                    <input name="id2" id="id2" min="0" type="number" value="" />
+                </div>
+             	<div class='input_wrapper'>
+                    <label for='id3'>Рост, см</label>
+                    <input name="id3" id="id3" min="0" type="number" value="" />
+                </div>
+				<div class='input_wrapper'>
+                    <label for='id4'>Креатинин сыворотки, мкмоль/л</label>
+                    <input name="id4" id="id4" min="0" type="number" value="" />
+                </div>	               
+                <div class='select_wrapper'>
+                    <label for='select_2'>Раса</label>
+                    <select name='select_2' id='id5'>
+                        <option value='1'>Белые</option>
+                        <option value='1.212'>Черные</option>
+                    </select>
+                </div>
+				<!-- по данному параметру (IDMS) видимо не корректное описание так как результат вычисления совпадает с -->
+				<!-- оргинальным калькулятором только когда он имеет обратное значение-->
+				<div class='select_wrapper'>
+                    <label for='select_3'>Соответствие IDMS</label>
+                    <select name='select_3' id='id6'>
+                        <option value='0.95'>Да</option>
+                        <option value='1'>Нет</option>
+                    </select>
+                </div>	
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>СКФ</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
