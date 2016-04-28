@@ -17,7 +17,7 @@
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-chevron-left'></i>
                     </div>
-                    <div class='col-xs-20 text-center'>Оценка клиренса креатинина (дети)</div>
+                    <div class='col-xs-20 text-center'>Расчет идеальной массы тела (взрослые)</div>
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-floppy-save'></i>
                     </div>
@@ -31,53 +31,72 @@
             </header>
             
             <main>
+			
 				<script>
-									function calculation() {
+
+					function calculation() {
 					var 
+						 
 					id1 = Number(document.getElementById('id1').value),
 					id2 = Number(document.getElementById('id2').value),
-				
-					result = 0,
-					text = 'мл/мин/1.73м^2';
-				
-					if(id1 < 60.96 || id1 > 198.12){
-						text = 'Рост должен быть в пределах от 60.96 до 198.12 см!'; 			
-					}
-					else if(id2 < 0.3 || id2 > 10){
-						text = 'Клиренс креатинина должен быть в пределах от 0.3 до 10 мг/дл!'; 			
-					}
-					else
-					{	
-						result = (0.48*id1)/id2;
-					}
-			
-					document.getElementById('result-score').innerHTML = result.toFixed(2);
-					document.getElementById('result-text').innerHTML  = text;
+					id3 = Number(document.getElementById('id3').value),
 					
+					result;
+					
+					if(id2 == 0){
+						if(id1 == 0){
+							result = 50 + 2.3 * (0.394 * id3 - 60);
+						}
+						else{
+							result = 45.5 + 2.3 * (0.394 * id3 - 60);
+						}
+					}
+					else{
+						if(id1 == 0){
+							result = 52 + 1.9 * (0.394 * id3 - 60);
+						}
+						else{
+							result = 49 + 1.7 * (0.394 * id3 - 60);
+						}
+					}
+						
+					document.getElementById('result-score').innerHTML = result.toFixed(2);
+					document.getElementById('result-text').innerHTML  = 'Идеальная масса тела'
 					}
 					
 					function reset() {
 					document.getElementById('result-score').innerHTML  = 'Результат';
-					document.getElementById('result-text').innerHTML  = 'мл/мин/1.73м^2';
-					document.getElementById('id1').value='';
-					document.getElementById('id2').value='';
+					document.getElementById('result-text').innerHTML  = 'Идеальная масса тела';
+					document.getElementById('id1').value=0;
+					document.getElementById('id2').value=0;
+					document.getElementById('id3').value='';
 					}
-
+					
 				</script>
 				
-				<div class='input_wrapper'>
-                    <label for='id1'>Рост, см</label>
-                    <input name="id1" id="id1" min="0" type="number" value="" />
+                <div class='select_wrapper'>
+                    <label for='select_1'>Пол</label>
+                    <select name='select_1' id='id1'>
+                        <option value='0'>Мужской</option>
+                        <option value='1'>Женский</option>
+                    </select>
+                </div>		
+				<div class='select_wrapper'>
+                    <label for='select_1'>Метод расчета</label>
+                    <select name='select_1' id='id2'>
+                        <option value='0'>по Devine</option>
+                        <option value='1'>по Robinson</option>
+                    </select>
                 </div>	
 				<div class='input_wrapper'>
-                    <label for='id2'>Креатинин плазмы, мг/дл</label>
-                    <input name="id2" id="id2" min="0" type="number" value="" />
-                </div>
+                    <label for='id3'>Рост, см</label>
+                    <input name="id3" id="id3" min="0" type="number" value="" />
+                </div>	
             </main>
         </div>
         <footer class='text-center'>
             <div class='result_title' id='result-score'>Результат</div>
-            <div class='result' id='result-text'>мл/мин/1.73м^2</div>
+            <div class='result' id='result-text'>Идеальная масса тела</div>
             <div class='row button_row'>
                 <div class='col-xs-12 button_wrapper'>
                     <button class='clear_button' onclick='reset()'>Сбросить</button>

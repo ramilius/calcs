@@ -31,49 +31,49 @@
             </header>
             
             <main>
-			<script>
-				function calculation() {
-				var 
-				id1 = Number(document.getElementById('id1').value),
-				id2 = Number(document.getElementById('id2').value),
-				id3 = Number(document.getElementById('id3').value),
-				id4 = Number(document.getElementById('id4').value),
-				id5 = Number(document.getElementById('id5').value),
-				id6 = Number(document.getElementById('id6').value),
-				text,
-				result = 0;
-			
-				if(id2 > 18){		
-					result = 175 * Math.pow((id4*id6/88.4),-1.154) * Math.pow(id2,-0.203) * id1 * id5;
-				}
-				else if(id2 <= 18){
-					result = (36.2 * id3) / id4;
-				}
+				<script>
+					function calculation() {
+					var 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),
+					text,
+					result = 0;
+				
+					if(id2 > 18){		
+						result = 175 * Math.pow((id4*id6/88.4),-1.154) * Math.pow(id2,-0.203) * id1 * id5;
+					}
+					else if(id2 <= 18){
+						result = (36.2 * id3) / id4;
+					}
 
-				if(result >= 90){ text = 'Стадия ХБП: I при наличии факторов риска или повреждение почек с нормальной почечной функцией' }
-				else if((result >= 60)&&(result < 90)){ text = 'Стадия ХБП: II'; }
-				else if((result >= 45)&&(result < 60)){ text = 'Стадия ХБП: IIIa'; }
-				else if((result >= 30)&&(result < 45)){ text = 'Стадия ХБП: IIIb'; }
-				else if((result >= 15)&&(result < 29)){ text = 'Стадия ХБП: IV'; }
-				else if((result < 15)){ text = 'Стадия ХБП: V'; }
+					if(result >= 90){ text = 'Стадия ХБП: I при наличии факторов риска или повреждение почек с нормальной почечной функцией' }
+					else if((result >= 60)&&(result < 90)){ text = 'Стадия ХБП: II'; }
+					else if((result >= 45)&&(result < 60)){ text = 'Стадия ХБП: IIIa'; }
+					else if((result >= 30)&&(result < 45)){ text = 'Стадия ХБП: IIIb'; }
+					else if((result >= 15)&&(result < 29)){ text = 'Стадия ХБП: IV'; }
+					else if((result < 15)){ text = 'Стадия ХБП: V'; }
 
-				document.getElementById('result-score').innerHTML = result;
-				document.getElementById('result-text').innerHTML  = text;
-				
-				}
-				
-				function reset() {
-				document.getElementById('result-score').innerHTML  = 'Результат';
-				document.getElementById('result-text').innerHTML  = 'мл/мин/1.73 м2';
-				document.getElementById('id1').value=1;
-				document.getElementById('id2').value='';
-				document.getElementById('id3').value='';
-				document.getElementById('id4').value='';
-				document.getElementById('id5').value=1;
-				document.getElementById('id6').value=1;
-				}
-				
-			</script>
+					document.getElementById('result-score').innerHTML = result.toFixed(2);
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'мл/мин/1.73 м2';
+					document.getElementById('id1').value=1;
+					document.getElementById('id2').value='';
+					document.getElementById('id3').value='';
+					document.getElementById('id4').value='';
+					document.getElementById('id5').value=1;
+					document.getElementById('id6').value=1;
+					}
+					
+				</script>
   
                 <div class='select_wrapper'>
                     <label for='select_1'>Пол</label>

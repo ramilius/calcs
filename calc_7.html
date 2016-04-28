@@ -31,91 +31,91 @@
             </header>
             
             <main>
-			<script>
-				function calculation() {
-				var 
-				id1 = Number(document.getElementById('id1').value),
-				id2 = Number(document.getElementById('id2').value),
-				id3 = Number(document.getElementById('id3').value),
-				id4 = Number(document.getElementById('id4').value),
-				id5 = Number(document.getElementById('id5').value),
+				<script>
+					function calculation() {
+					var 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
 
-				result = 0,
-				text;
+					result = 0,
+					text;
 
-				if(id3 < 18 || id3 > 110){
-					alert( "Возраст должен быть в пределах от 18 до 110 лет!" ); 			
-				}
-				else if(id4 < 22 || id4 > 200){
-					alert( "Вес должен быть в пределах от 22 до 200 кг!" ); 			
-				}
-				else if(id5 < 0.3 || id5 > 10 ){
-					alert( "Клиренс креатинина должен быть в пределах от 0.3 до 10 мг/дл!" ); 			
-				}
-				else
-				{
-					if((id1 == 0)&&(id2 == 0)){
-						result = ((140 - id3)*id4)/(72*id5);
-						text = 'мл/мин';
+					if(id3 < 18 || id3 > 110){
+						text = 'Возраст должен быть в пределах от 18 до 110 лет!'; 			
 					}
-				
-					if((id1 == 0)&&(id2 == 1)){
-						result = (((140 - id3)*id4)/(72*id5))*0.85;
-						text = 'мл/мин';
+					else if(id4 < 22 || id4 > 200){
+						text = 'Вес должен быть в пределах от 22 до 200 кг!'; 			
 					}
+					else if(id5 < 0.3 || id5 > 10 ){
+						text = 'Клиренс креатинина должен быть в пределах от 0.3 до 10 мг/дл!'; 			
+					}
+					else
+					{
+						if((id1 == 0)&&(id2 == 0)){
+							result = ((140 - id3)*id4)/(72*id5);
+							text = 'мл/мин';
+						}
+					
+						if((id1 == 0)&&(id2 == 1)){
+							result = (((140 - id3)*id4)/(72*id5))*0.85;
+							text = 'мл/мин';
+						}
 
-					if((id1 == 1)&&(id2 == 0)){
-						result = (98-0.8*(id3 - 20))/id5;
-						text = 'мл/мин/1.73 кв.м';
+						if((id1 == 1)&&(id2 == 0)){
+							result = (98-0.8*(id3 - 20))/id5;
+							text = 'мл/мин/1.73 кв.м';
+						}
+					
+						if((id1 == 1)&&(id2 == 1)){
+							result = ((98-0.8*(id3 - 20))/id5)*0.90;
+							text = 'мл/мин/1.73 кв.м';
+						}
 					}
-				
-					if((id1 == 1)&&(id2 == 1)){
-						result = ((98-0.8*(id3 - 20))/id5)*0.90;
-						text = 'мл/мин/1.73 кв.м';
-					}
-				}
-		
-				document.getElementById('result-score').innerHTML = result;
-				document.getElementById('result-text').innerHTML  = text;
-				
-				}
-				
-				function reset() {
-				document.getElementById('result-score').innerHTML  = 'Результат';
-				document.getElementById('result-text').innerHTML  = 'Размерность';
-				document.getElementById('id1').value=0;
-				document.getElementById('id2').value=0;
-				document.getElementById('id3').value='';
-				document.getElementById('id4').value='';
-				document.getElementById('id5').value='';
 			
-				}
+					document.getElementById('result-score').innerHTML = result.toFixed(2);
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Размерность';
+					document.getElementById('id1').value=0;
+					document.getElementById('id2').value=0;
+					document.getElementById('id3').value='';
+					document.getElementById('id4').value='';
+					document.getElementById('id5').value='';
 				
-			</script>
-  			
-		<div class='select_wrapper'>
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
                     <label for='select_1'>Метод расчета</label>
                     <select name='select_1' id='id1'>
                         <option value='0'>по Cockcroft-Gault</option>
                         <option value='1'>по Jelliffe</option>
                     </select>
                 </div>		
-		<div class='select_wrapper'>
+				<div class='select_wrapper'>
                     <label for='select_2'>Пол</label>
                     <select name='select_2' id='id2'>
                         <option value='0'>Мужской</option>
                         <option value='1'>Женский</option>
                     </select>
                 </div>		
-		<div class='input_wrapper'>
-                    <label for='id3'>Возраст, лет<label>
+				<div class='input_wrapper'>
+                    <label for='id3'>Возраст, лет</label>
                     <input name="id3" id="id3" min="0" type="number" value="" />
                 </div>	
-		<div class='input_wrapper'>
+				<div class='input_wrapper'>
                     <label for='id4'>Вес, кг</label>
                     <input name="id4" id="id4" min="0" type="number" value="" />
                 </div>
-		<div class='input_wrapper'>
+				<div class='input_wrapper'>
                     <label for='id5'>Креатинин плазмы, мг/дл</label>
                     <input name="id5" id="id5" min="0" type="number" value="" />
                 </div>

@@ -17,7 +17,7 @@
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-chevron-left'></i>
                     </div>
-                    <div class='col-xs-20 text-center'>Оценка клиренса креатинина (дети)</div>
+                    <div class='col-xs-20 text-center'>Вычисление площади поверхности тела (дети)</div>
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-floppy-save'></i>
                     </div>
@@ -31,53 +31,43 @@
             </header>
             
             <main>
+			
 				<script>
-									function calculation() {
+
+					function calculation() {
 					var 
+						 
 					id1 = Number(document.getElementById('id1').value),
 					id2 = Number(document.getElementById('id2').value),
-				
-					result = 0,
-					text = 'мл/мин/1.73м^2';
-				
-					if(id1 < 60.96 || id1 > 198.12){
-						text = 'Рост должен быть в пределах от 60.96 до 198.12 см!'; 			
-					}
-					else if(id2 < 0.3 || id2 > 10){
-						text = 'Клиренс креатинина должен быть в пределах от 0.3 до 10 мг/дл!'; 			
-					}
-					else
-					{	
-						result = (0.48*id1)/id2;
-					}
-			
-					document.getElementById('result-score').innerHTML = result.toFixed(2);
-					document.getElementById('result-text').innerHTML  = text;
+									
+					result = (Math.sqrt(id1*id2/3600)).toFixed(2);   
 					
+					document.getElementById('result-score').innerHTML = result + ' кв.м';
+					document.getElementById('result-text').innerHTML  = 'Площадь поверхности тела'
 					}
 					
 					function reset() {
 					document.getElementById('result-score').innerHTML  = 'Результат';
-					document.getElementById('result-text').innerHTML  = 'мл/мин/1.73м^2';
+					document.getElementById('result-text').innerHTML  = 'Площадь поверхности тела';
 					document.getElementById('id1').value='';
 					document.getElementById('id2').value='';
 					}
-
+					
 				</script>
 				
-				<div class='input_wrapper'>
+                <div class='input_wrapper'>
                     <label for='id1'>Рост, см</label>
                     <input name="id1" id="id1" min="0" type="number" value="" />
                 </div>	
 				<div class='input_wrapper'>
-                    <label for='id2'>Креатинин плазмы, мг/дл</label>
+                    <label for='id2'>Вес, кг</label>
                     <input name="id2" id="id2" min="0" type="number" value="" />
-                </div>
+                </div>	
             </main>
         </div>
         <footer class='text-center'>
             <div class='result_title' id='result-score'>Результат</div>
-            <div class='result' id='result-text'>мл/мин/1.73м^2</div>
+            <div class='result' id='result-text'>Площадь поверхности тела</div>
             <div class='row button_row'>
                 <div class='col-xs-12 button_wrapper'>
                     <button class='clear_button' onclick='reset()'>Сбросить</button>
