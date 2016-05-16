@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Шкала комы Глазго для взрослых</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),
+					id3 = Number(document.getElementById('id3').value),
+					
+					text,
+					result = id1 + id2 + id3;
+					
+					if(result == 3){
+						text = 'Терминальная кома, смерть мозга.';
+					}
+					if((result > 3)&&(result < 6)){
+						text = 'Глубокая кома.';
+					}
+					if((result > 5)&&(result < 8)){
+						text = 'Умеренная кома.';
+					}
+					if((result > 7)&&(result < 11)){
+						text = 'Сопор.';
+					}
+					if((result > 10)&&(result < 13)){
+						text = 'Глубокое оглушение.';
+					}
+					if((result > 12)&&(result < 15)){
+						text = 'Умеренное оглушение.';
+					}
+					if(result == 15){
+						text = 'Сознание ясное.';
+					}
+									
+					document.getElementById('result-score').innerHTML = result + ' балла(ов)';
+					document.getElementById('result-text').innerHTML  = text;
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value=1;
+					document.getElementById('id2').value=1;
+					document.getElementById('id3').value=1;
+					}
+					
+				</script>
+						
+				<div class='select_wrapper'>
+				    <label for='select_1'>Открывание глаз</label>
+					<select name='select_1' id='id1' >
+						<option value='1'>Отсутствует</option>
+						<option value='2'>Реакция на боль</option>
+						<option value='3'>Реакция на голос</option>
+						<option value='4'>Произвольное</option>	
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Речевая реакция</label>
+					<select name='select_2' id='id2' >
+						<option value='1'>Отсутствие речи</option>
+						<option value='2'>Нечленораздельные звуки в ответ на заданный вопрос</option>
+						<option value='3'>Словесная окрошка, ответ по смыслу не соответствует вопросу</option>
+						<option value='4'>Больной дезориентирован, спутанная речь</option>	
+						<option value='5'>Больной ориентирован, быстрый и правильный ответ на заданный вопрос</option>	
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Двигательная реакция</label>
+					<select name='select_3' id='id3' >
+						<option value='1'>Отсутствие движений</option>
+						<option value='2'>Патологическое разгибание в ответ на болевое раздражение</option>
+						<option value='3'>Патологическое сгибание в ответ на болевое раздражение</option>
+						<option value='4'>Отдёргивание конечности в ответ на болевое раздражение</option>	
+						<option value='5'>Целенаправленное движение в ответ на болевое раздражение (отталкивание)</option>	
+						<option value='6'>Выполнение движений по команде</option>	
+					</select>
+				</div>
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
