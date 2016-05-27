@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Расчет дозировки эуфиллина у детей до 16 лет</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),
+					
+					text,	
+					result,
+					result1,
+					result1ml,
+					result2,
+					result2ml,
+					result3;	
+					
+					if(id1 == ''){
+						result = 'Введите вес в килограммах.';
+					}
+					else{	
+						//по данному параметру в оригинальном калькуляторе результат получается обратным,ошибка либо в алгоритме либо в описании.
+						if(id5 == 0){
+							result1 = 3 * id1;
+						}
+						else{
+							result1 = 6 * id1;
+						}
+						
+						result1ml = (result1/24).toFixed(2);
+									
+						if(id3 == '')
+						{			
+							result = 'Нагрузочная доза: ' + result1 + ' мг' + '(' + result1ml + 'мл).';
+							text = 'Введите желаемое время введения в часах.';
+						}
+						else{	
+									
+							if(id2 == 1){ result2 = 0.1 * id1 * id3; }
+							if(id2 == 2){ result2 = 0.2 * id1 * id3; }
+							if(id2 == 3){ result2 = 0.5 * id1 * id3; }
+							if(id2 == 4){ result2 =   1 * id1 * id3; }
+							if(id2 == 5){ result2 = 0.5 * id1 * id3; }
+							//по данному параметру в оригинальном калькуляторе результат получается обратным,ошибка либо в алгоритме либо в описании.
+							if(id6 == 1){ result2 = result2/2; }
+							
+							result2ml = (result2/24).toFixed(2);
+							
+							if(id4 == '')
+							{
+								result = 'Нагрузочная доза: ' + result1 + ' мг' + '(' + result1ml + 'мл) ' + 'Поддерживаемая доза: ' + result2 + ' мг' + '(' + result2ml + 'мл).';
+								text = 'Введите объем раствора.';
+							}
+							else{
+							
+								result3 = (id4/id3).toFixed(2);
+								
+								if(id6 == 1){ result3 = result3/2; }
+								
+								result = 'Нагрузочная доза: ' + result1 + ' мг' + '(' + result1ml + 'мл) ' + 'Поддерживаемая доза: ' + result2 + ' мг' + '(' + result2ml + 'мл)';	
+								text = 'Скорость введения поддерживаемой дозы: ' + result3 + ' мл/час';
+							}
+						}
+					}	
+								
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = '';
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = '';
+					document.getElementById('id4').value = '';
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = 0;
+					}
+					
+				</script>
+				
+				<div class='input_wrapper'>
+                    <label for='id1'>Масса тела, кг</label>
+                    <input name="id1" id="id1" min="0" type="number" value="" />
+                </div>	
+			    <div class='select_wrapper'>
+				    <label for='select_1'>Возраст</label>
+					<select name='select_1' id='id2' >
+						<option value='1'>0 - 3 недели</option>
+						<option value='2'>3 - 6 недель</option>
+						<option value='3'>6 недель - 3 месяца</option>
+						<option value='4'>6 месяцев - 9 лет</option>	
+						<option value='4'>9 - 16 лет</option>	
+					</select>
+				</div>
+				<div class='input_wrapper'>
+                    <label for='id3'>Желаемое время введения, часов</label>
+                    <input name="id3" id="id3" min="0" type="number" value="" />
+                </div>	
+				<div class='input_wrapper'>
+                    <label for='id4'>Объем раствора после разведения, мл</label>
+                    <input name="id4" id="id4" min="0" type="number" value="" />
+                </div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Получал ли ребенок теофиллин в предшествующие 12 - 24 часа?</label>
+					<select name='select_2' id='id5' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Сердечная недостаточность или патология печени или прием эритромицина? </label>
+					<select name='select_3' id='id6' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>	
+				
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
