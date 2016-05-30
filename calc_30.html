@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Оценка по шкале Апгар</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
+										
+					text,	
+					result = id1 + id2 + id3 + id4 + id5;
+			
+					if(result < 4){ text = 'Требуется немедленная реанимация';}
+					if((result > 3)&&(result < 8)){ text = 'Может нуждаться в реанимации';}
+					if(result > 6){ text = 'Норма';}
+												
+					document.getElementById('result-score').innerHTML = result + ' балла(ов)';
+					document.getElementById('result-text').innerHTML  = text;
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = 0;
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Окраска кожного покрова</label>
+					<select name='select_1' id='id1' >
+						<option value='0'>Генерализованная бледность или генерализованный цианоз</option>
+						<option value='1'>Розовая окраска тела и синюшная окраска конечностей (акроцианоз)</option>
+						<option value='2'>Розовая окраска всего тела и конечностей</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Частота сердечных сокращений</label>
+					<select name='select_2' id='id2' >
+						<option value='0'>Отсутствует</option>
+						<option value='1'><100</option>
+						<option value='2'>>100</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Рефлекторная возбудимость</label>
+					<select name='select_3' id='id3' >
+						<option value='0'>Не реагирует</option>
+						<option value='1'>Реакция слабо выражена (гримаса, движение)</option>
+						<option value='2'>Реакция в виде движения, кашля, чихания, громкого крика</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>Мышечный тонус</label>
+					<select name='select_4' id='id4' >
+						<option value='0'>Отсутствует,конечности свисают</option>
+						<option value='1'>Снижен, некоторое сгибание конечностей</option>
+						<option value='2'>Выражены активные движения</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_5'>Дыхание</label>
+					<select name='select_5' id='id5' >
+						<option value='0'>Отсутствует</option>
+						<option value='1'>Нерегулярное, крик слабый (гиповентиляция)</option>
+						<option value='2'>Нормальное, крик громкий</option>
+					</select>
+				</div>
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
