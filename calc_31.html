@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Шкала комы Мэйо</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),		
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),		
+		
+					text,
+					result = id1 + id2 + id3 + id4;
+					
+					if(result < 4){ text = 'Смерть мозга';}
+					if((result >=4)&&(result < 9)){ text = 'Кома';}
+					if((result >=9)&&(result < 13)){ text = 'Сопор';}
+					if((result >=13)&&(result < 15)){ text = 'Оглушение';}
+					if(result == 15){ text = 'Сомноленция';}
+					if(result == 16){ text = 'Ясное сознание';}
+					
+					document.getElementById('result-score').innerHTML = result + ' балла(ов)';
+					document.getElementById('result-text').innerHTML  = text;
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = 0;
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Открывание глаз</label>
+					<select name='select_1' id='id1' >
+						<option value='0'>Не открывает на боль</option>
+						<option value='1'>Закрыты, открывает на боль</option>
+						<option value='2'>Закрыты, открывает на громкую команду	</option>
+						<option value='3'>Открыты, нет слежения</option>
+						<option value='4'>Самостоятельное слежение, мигание по команде</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Двигательные реакции</label>
+					<select name='select_2' id='id2' >
+						<option value='0'>Отсутствуют или генерализованный миоклонус</option>
+						<option value='1'>Разгибание в ответ на боль</option>
+						<option value='2'>Сгибание в ответ на боль</option>
+						<option value='3'>Тянется к месту болевого раздражения</option>
+						<option value='4'>"Отлично" - показывает большим пальцем</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+					<label for='select_3'>Стволовые реакции</label>
+					<select name='select_3' id='id3' >
+						<option value='0'>Зрачковый, роговичный и кашлевой рефлексы отсутствуют</option>
+						<option value='1'>Зрачковый и роговичный рефлексы отсутствуют</option>
+						<option value='2'>Зрачковый или роговичный рефлексы отсутствуют</option>
+						<option value='3'>Один зрачок расширен, не реагирует на свет</option>
+						<option value='4'>Зрачковый и роговичный рефлексы сохранены</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+					<label for='select_4'>Дыхание</label>
+					<select name='select_4' id='id4' >
+						<option value='0'>Подчинено респиратору или апноэ</option>
+						<option value='1'>Чаще частоты респиратора</option>
+						<option value='2'>Не интубирован, нерегулярное</option>
+						<option value='3'>Не интубирован, типа Чейн - Стокса</option>
+						<option value='4'>Не интубирован, нормальное</option>
+					</select>
+				</div>
+            </main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
