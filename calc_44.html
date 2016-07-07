@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Дефицит воды (гипернатриемия)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),	
+					id6 = Number(document.getElementById('id6').value),
+						
+					tbw,
+					text,
+					result1,
+					result2,
+					result3;
+					
+					if((id1 < 1)||(id1 > 200)||(id1 == '')){
+						result1 =  'Пожалуйста, введите значение от 0 до 200';
+						result2 = '';
+						result3 = '';
+					}
+					else{
+						if(id2 == ''){
+							result1 = 'Пожалуйста, заполните поле';
+							result2 = '';
+							result3 = '';
+						}
+						else{	
+							if(id3 == 1){
+								id2 = id2 * 0.453592;
+							}
+							
+							if(id4 == 0){ tbw = 0.6; }
+							if(id4 == 1){ tbw = 0.5; }
+							if(id4 == 2){ tbw = 0.4; }
+						
+							result1 = (((id1 - 140) / 140) * id2 * tbw).toFixed(2);
+							result2 = (((result1 / 2) / id5) * 1000).toFixed(2);
+							result3 = (((result1 / 2) / id6) * 1000).toFixed(2);
+									
+							result1 = 'Дефицит свободной воды ' + result1 + ' литра(ов)';
+							result2 = 'Заменить свободную воду на ' + result2 + ' мл/ч X ' + id5 + ' час ';
+							result3 = 'затем ' + result3 + ' мл/ч X ' + id6 + ' час';
+						}	
+					}
+			
+					document.getElementById('result-score').innerHTML = result1;
+					document.getElementById('result-text').innerHTML  = result2 + result3;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = '';
+					document.getElementById('id2').value = '';
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = 0;
+				
+					}
+					
+				</script>
+				
+				<div class='input_wrapper'>
+                    <label for='id1'>Уровень натрия в сыворотке крови пациента, мэкв/л</label>
+                    <input name="id1" id="id1" min="0" type="number" value="" />
+                </div>	
+				<div class='input_wrapper'>
+                    <label for='id2'>Вес тела пациента</label>
+                    <input name="id2" id="id2" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+					<select name='select_1' id='id3' >
+						<option value='0'>кг</option>
+						<option value='1'>фунты</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Пациент:</label>
+					<select name='select_2' id='id4' >
+						<option value='0'>Молодой мужчина</option>
+						<option value='1'>Молодая женщина</option>
+						<option value='1'>Пожилой мужчина</option>
+						<option value='2'>Пожелая женщина</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Протокол коррекции (первый½) </label>
+					<select name='select_3' id='id5' >
+						<option value='12'>12</option>
+						<option value='18'>18</option>
+						<option value='24'>24</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>Протокол коррекции (последний½) </label>
+					<select name='select_4' id='id6' >
+						<option value='24'>24</option>
+						<option value='36'>36</option>
+						<option value='48'>48</option>
+					</select>
+				</div>		
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Влияние гипергликемии на уровень натрия в сыворотке крови</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),	
+						
+					dim,
+					text,
+					result;
+					
+					if((id1 == '')||(id3 == '')){
+						result = 'Пожалуйста, заполните поле';
+						text = '';
+					}
+					else{	
+						if(id2 != id4){
+							result = 'Выберите подходящие единицы измерения';
+							text = '';
+						}
+						else{
+							if(id2 == 0){
+								result = (id1 + ((id3 - 100) / 100) * 2.4).toFixed(2);
+								dim = ' мэкв/л';
+								text = '';
+							}
+							if(id2 == 1){
+								result = (id1 + ((id3 - 5.6) / 5.6) * 2.4).toFixed(2);
+								dim = ' ммоль/л';
+								text = '';
+							}
+							
+							result = result + dim;
+						}
+					}
+							
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = '';
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = '';
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = '';
+					document.getElementById('id4').value = 0;
+					
+					}
+					
+				</script>
+				
+				<div class='input_wrapper'>
+                    <label for='id1'>Измеренный уровень Na</label>
+                    <input name="id1" id="id1" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+					<select name='select_1' id='id2' >
+						<option value='0'>мэкв/л</option>
+						<option value='1'>ммоль/л</option>
+					</select>
+				</div>
+				<div class='input_wrapper'>
+                    <label for='id3'>Уровень глюкозы</label>
+                    <input name="id3" id="id3" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+					<select name='select_2' id='id4' >
+						<option value='0'>мг/дл</option>
+						<option value='1'>ммоль/л</option>
+					</select>
+				</div>
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>SCORE (риск остеопороза)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),	
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),	
+					id7 = Number(document.getElementById('id7').value),
+					id8 = Number(document.getElementById('id8').value),	
+					id9 = Number(document.getElementById('id9').value),	
+						
+					text,
+					result;
+					
+					if((id6 == '')||(id9 == '')){
+						result = 'Пожалуйста, заполните поле';
+						text = '';
+					}
+					else{
+						id6 = 3 * Math.floor(id6/10);
+
+						if(id8 == 1){
+							id9 = id9 * 2.20462;
+						}
+						
+						id9 = -1 * (id9/10);
+						
+						result = (id1 + id2 + id3 + id4 + id5 + id6 + id7 + id9).toFixed();
+						
+						if(result < 6){ text = 'Низкий риск развития остеопороза, нет явных показаний для проведения дополнительных скрининг-тестов';}
+						if(result >= 6){ text = 'Высокий риск развития остеопороза'; }
+						
+						result = result + ' балла(ов)';
+					}
+
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = 0;
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = '';
+					document.getElementById('id7').value = 1;
+					document.getElementById('id8').value = 0;
+					document.getElementById('id9').value = '';
+					
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Выберите расу</label>
+					<select name='select_1' id='id1' >
+						<option value='0'>Афроамериканская</option>
+						<option value='5'>Европеоидная(белые)</option>
+						<option value='5'>Монголоидная</option>
+						<option value='5'>Латиноамериканская</option>
+						<option value='5'>Другое</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>У пациентки есть ревматоидный артрит?</label>
+					<select name='select_2' id='id2' >
+						<option value='0'>Нет</option>
+						<option value='4'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>У пациентки в анамнезе есть атравматические переломы бедра после возраста 45 лет</label>
+					<select name='select_3' id='id3' >
+						<option value='0'>Нет</option>
+						<option value='4'>Да</option>	
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>У пациентки в анамнезе есть атравматические переломы ребра после возраста 45 лет</label>
+					<select name='select_4' id='id4' >
+						<option value='0'>Нет</option>
+						<option value='4'>Да</option>	
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_5'>У пациентки в анамнезе есть атравматические переломы запастья после возраста 45 лет</label>
+					<select name='select_5' id='id5' >
+						<option value='0'>Нет</option>
+						<option value='4'>Да</option>	
+					</select>
+				</div>	
+				<div class='input_wrapper'>
+                    <label for='id6'>Введите текущий возраст пациентки, Лет</label>
+                    <input name="id6" id="id6" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+				    <label for='select_6'>Пациентка сейчас принимает или принимала в прошлом эстроген?</label>
+					<select name='select_6' id='id7' >
+						<option value='1'>Нет</option>
+						<option value='0'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_7'>Тип веса</label>
+					<select name='select_7' id='id8' >
+						<option value='0'>Фунты</option>
+						<option value='1'>кг</option>
+					</select>
+				</div>		
+				<div class='input_wrapper'>
+                    <label for='id9'>Вес</label>
+                    <input name="id9" id="id9" min="0" type="number" value="" />
+                </div>	
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

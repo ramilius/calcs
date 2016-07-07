@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Вариация пульсового давления крови (%)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+						
+					text,
+					result;
+					
+					if((id1 < 1)||(id1 > 90)||(id1 == '')){
+						result = 'Пожалуйста, введите значение от 0 до 90';
+						text = '';
+					}
+					else{	
+						if((id2 < 1)||(id2 > 10)||(id2 == '')){
+							result = 'Пожалуйста, введите значение от 0 до 10';
+							text = '';
+						}
+						else{
+							
+							result = 100 * ((id1 - id2)/((id1 + id2)/2)).toFixed(2);
+							
+							if(result < 12){ text = 'Малая вероятность восстановления гемодинамики в ответ на инфузионную терапию.'; }
+							if(result >= 12){ text = 'Высокая вероятность восстановления гемодинамики в ответ на инфузионную терапию.'; }
+							
+							result = 'Дельта Pp ' + result + ' %';
+							
+							}
+						}
+							
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = '';
+					document.getElementById('id2').value = '';
+					
+					}
+					
+				</script>
+				
+				<div class='input_wrapper'>
+                    <label for='id1'>Максимальное значение пульсового артериального давления (Ppmax) ,мм рт. ст.</label>
+                    <input name="id1" id="id1" min="0" type="number" value="" />
+                </div>	
+				<div class='input_wrapper'>
+                    <label for='id2'>Минимальное значение пульсового артериального давления (Ppmin) ,мм рт. ст.</label>
+                    <input name="id2" id="id2" min="0" type="number" value="" />
+                </div>	
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+
