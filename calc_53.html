@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Индекс риска осложнений со стороны сердца (Голдман)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),
+					id7 = Number(document.getElementById('id7').value),
+					id8 = Number(document.getElementById('id8').value),
+					id9 = Number(document.getElementById('id9').value),
+									
+					text,
+					result = id1 + id2 + id3 + id4 + id5 + id6 + id7 + id8 + id9;
+								
+					if((result >= 0)&&(result < 6)){ text = 'Класс I. У 99 % нет клинически значимых осложнений, у 0,6 % развиваются осложнения, угрожающие жизни, у 0,2 % сердечная смерть.'; }
+					if((result > 5)&&(result < 13)){ text = 'Класс II. 96 % нет осложнений, 3 % осложнения, угрожающие жизни, 1 % сердечная смерть.'; }
+					if((result > 12)&&(result < 26)){ text = 'Класс III. 86 % нет осложнений, 11 % осложнения, угрожающие жизни, 3 % сердечная смерть.'; }
+					if(result > 25){ text = 'Класс IV. 49 % нет осложнений, 12 % осложнения, угрожающие жизни, 39 % сердечная смерть.'; }
+								
+					document.getElementById('result-score').innerHTML = result + ' Балла(ов)';;
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = 0;
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = 0;
+					document.getElementById('id7').value = 0;
+					document.getElementById('id8').value = 0;
+					document.getElementById('id9').value = 0;
+					
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Возраст > 70</label>
+					<select name='select_1' id='id1' >
+						<option value='0'>Нет</option>
+						<option value='5'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>ИМ менее 6 месяцев назад</label>
+					<select name='select_2' id='id2' >
+						<option value='0'>Нет</option>
+						<option value='10'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>S3 ритм галопа или набухание яремных вен</label>
+					<select name='select_3' id='id3' >
+						<option value='0'>Нет</option>
+						<option value='11'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>Стеноз аортального клапана от средней до тяжелой степени</label>
+					<select name='select_4' id='id4' >
+						<option value='0'>Нет</option>
+						<option value='3'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_5'>Ненормальный синусовый ритм и/или предсердная экстрасистолия на предоперационной ЭКГ</label>
+					<select name='select_5' id='id5' >
+						<option value='0'>Нет</option>
+						<option value='7'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_6'>> 5 эпизодов желудочковой экстрасистолии в минуту</label>
+					<select name='select_6' id='id6' >
+						<option value='0'>Нет</option>
+						<option value='7'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_7'>Нарушения со стороны почек, печени или газ артериальной крови (ГАК) или прикованность к постели </label>
+					<select name='select_7' id='id7' >
+						<option value='0'>Нет</option>
+						<option value='3'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_8'>Внутрибрюшинная, внутригрудная или артериальная операция </label>
+					<select name='select_8' id='id8' >
+						<option value='0'>Нет</option>
+						<option value='3'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_9'>Неотложная операция</label>
+					<select name='select_9' id='id9' >
+						<option value='0'>Нет</option>
+						<option value='4'>Да</option>
+					</select>
+				</div>
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

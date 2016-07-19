@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Критерии Уэллса (тромбоз глубоких вен)</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),	
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),	
+					id7 = Number(document.getElementById('id7').value),
+					id8 = Number(document.getElementById('id8').value),	
+					id9 = Number(document.getElementById('id9').value),
+					
+					text,
+					result = id1 + id2 + id3 + id4 + id5 + id6 + id7 + id8 + id9;
+					
+					if((result >= 0)&&(result < 3)){ text = 'Умеренный риск(17%)'; }
+					if(result >= 3){ text = 'Высокий риск(75%)'; }
+				
+					result = result + ' Балла(ов)';
+										
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = 0;
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = 0;
+					document.getElementById('id7').value = 0;
+					document.getElementById('id8').value = 0;
+					document.getElementById('id9').value = 0;
+					
+					}
+					
+				</script>
+				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Активный рак (лечение в течение 6 месяцев или временное облегчение заболевания)</label>
+					<select name='select_1' id='id1' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Паралич, парез или иммобилизация нижних конечностей</label>
+					<select name='select_2' id='id2' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Прикованный к постели в течение более чем 3 дней из-за операции (в течение 4 недель)</label>
+					<select name='select_3' id='id3' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>Локализованная болезненность по ходу глубоких вен</label>
+					<select name='select_4' id='id4' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_5'>Отек всей ноги</label>
+					<select name='select_5' id='id5' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_6'>Односторонний отек задней части голени больше, чем 3 см (ниже бугристости большеберцовой кости)</label>
+					<select name='select_6' id='id6' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_7'>Односторонняя пастозность</label>
+					<select name='select_7' id='id7' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_8'>Коллатеральные поверхностные вены</label>
+					<select name='select_8' id='id8' >
+						<option value='0'>Нет</option>
+						<option value='1'>Да</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_9'>Альтернативная диагностика с той же степенью вероятности или более вероятна, чем тромбоз глубоких вен (ТГВ)</label>
+					<select name='select_9' id='id9' >
+						<option value='0'>Нет</option>
+						<option value='-2'>Да</option>
+					</select>
+				</div>			
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'></div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

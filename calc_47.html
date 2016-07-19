@@ -17,7 +17,7 @@
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-chevron-left'></i>
                     </div>
-                    <div class='col-xs-20 text-center'>Дефицит воды (гипернатриемия)</div>
+                    <div class='col-xs-20 text-center'>Допустимая потеря крови (ДПК)</div>
                     <div class='col-xs-2 right_icon text-center'>
                         <i class='glyphicon glyphicon-floppy-save'></i>
                     </div>
@@ -43,101 +43,98 @@
 					id4 = Number(document.getElementById('id4').value),
 					id5 = Number(document.getElementById('id5').value),	
 					id6 = Number(document.getElementById('id6').value),
+					id7 = Number(document.getElementById('id7').value),
 						
-					tbw,
 					text,
 					result1,
-					result2,
-					result3;
+					result;
 					
-					if((id1 < 1)||(id1 > 200)||(id1 == '')){
-						result1 =  'Пожалуйста, введите значение от 0 до 200';
-						result2 = '';
-						result3 = '';
+					if((id2 == '')||(id4 == '')||(id6 == '')){
+						result =  'Пожалуйста, заполните поле';
+						text = '';
 					}
-					else{
-						if(id2 == ''){
-							result1 = 'Пожалуйста, заполните поле';
-							result2 = '';
-							result3 = '';
-						}
-						else{	
-							if(id3 == 1){
+					else{		
+							if(id3 == 0){
 								id2 = id2 * 0.453592;
 							}
 							
-							if(id4 == 0){ tbw = 0.6; }
-							if(id4 == 1){ tbw = 0.5; }
-							if(id4 == 2){ tbw = 0.4; }
+							if(id5 == 0){
+								id4 = id4 / 100;
+							}
+							
+							if(id7 == 0){
+								id6 = id6 / 100;
+							}
+					
+							result = (id2 * id1 * (id4 - id6) / ( (id4 + id6 ) / 2 )).toFixed(2);	
+							// значение по данному параметру не значительно расходиться с ориг.калькулятором.
+							result1 = (3 * (result / 2)).toFixed(2);			
+							
+							result = 'Допустимая потеря крови ' + result + ' мл.';
+							text = 'Предполагаемы объем крови ' + result1 + ' мл.';
+						}
 						
-							result1 = (((id1 - 140) / 140) * id2 * tbw).toFixed(2);
-							result2 = (((result1 / 2) / id5) * 1000).toFixed(2);
-							result3 = (((result1 / 2) / id6) * 1000).toFixed(2);
-									
-							result1 = 'Дефицит свободной воды ' + result1 + ' литра(ов)';
-							result2 = 'Заменить свободную воду на ' + result2 + ' мл/ч X ' + id5 + ' час ';
-							result3 = 'затем ' + result3 + ' мл/ч X ' + id6 + ' час';
-						}	
-					}
-			
-					document.getElementById('result-score').innerHTML = result1;
-					document.getElementById('result-text').innerHTML  = result2 + result3;
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
 					
 					}
 					
 					function reset() {
 					document.getElementById('result-score').innerHTML  = 'Результат';
 					document.getElementById('result-text').innerHTML  = 'Оценка';
-					document.getElementById('id1').value = '';
+					document.getElementById('id1').value = 0;
 					document.getElementById('id2').value = '';
 					document.getElementById('id3').value = 0;
-					document.getElementById('id4').value = 0;
+					document.getElementById('id4').value = '';
 					document.getElementById('id5').value = 0;
-					document.getElementById('id6').value = 0;
-				
+					document.getElementById('id6').value = '';
+					document.getElementById('id7').value = 0;
+					
 					}
 					
 				</script>
 				
+				<div class='select_wrapper'>
+				    <label for='select_1'>Группа</label>
+					<select name='select_1' id='id1' >
+						<option value='90'>Недоношенные новорожденные</option>
+						<option value='85'>Новородженный до 6 месцев</option>
+						<option value='80'>От 6 месцев до 2 лет</option>
+						<option value='70'>От 2 лето до совершеннолетия</option>
+						<option value='75'>Совершеннолетние мужчины</option>
+						<option value='65'>Совершеннолетние женщины</option>
+					</select>
+				</div>
 				<div class='input_wrapper'>
-                    <label for='id1'>Уровень натрия в сыворотке крови пациента,  мэкв/л</label>
-                    <input name="id1" id="id1" min="0" type="number" value="" />
-                </div>	
-				<div class='input_wrapper'>
-                    <label for='id2'>Вес тела пациента</label>
+                    <label for='id2'>Вес</label>
                     <input name="id2" id="id2" min="0" type="number" value="" />
                 </div>	
 				<div class='select_wrapper'>
-					<select name='select_1' id='id3' >
-						<option value='0'>кг</option>
-						<option value='1'>фунты</option>
+					<select name='select_2' id='id3' >
+						<option value='0'>фунт</option>
+						<option value='1'>кг</option>
 					</select>
 				</div>
+				<div class='input_wrapper'>
+                    <label for='id4'>Исходный гематокрит</label>
+                    <input name="id4" id="id4" min="0" type="number" value="" />
+                </div>	
 				<div class='select_wrapper'>
-				    <label for='select_2'>Пациент:</label>
-					<select name='select_2' id='id4' >
-						<option value='0'>Молодой мужчина</option>
-						<option value='1'>Молодая женщина</option>
-						<option value='1'>Пожилой мужчина</option>
-						<option value='2'>Пожелая женщина</option>
-					</select>
-				</div>
-				<div class='select_wrapper'>
-				    <label for='select_3'>Протокол коррекции (первый½) </label>
 					<select name='select_3' id='id5' >
-						<option value='12'>12</option>
-						<option value='18'>18</option>
-						<option value='24'>24</option>
+						<option value='0'>%</option>
+						<option value='1'>доля</option>
+					</select>
+				</div>	
+				<div class='input_wrapper'>
+                    <label for='id6'>Результирующий наименьший приемлемый гематокрит </label>
+                    <input name="id6" id="id6" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+					<select name='select_4' id='id7' >
+						<option value='0'>%</option>
+						<option value='1'>доля</option>
 					</select>
 				</div>
-				<div class='select_wrapper'>
-				    <label for='select_4'>Протокол коррекции (последний½) </label>
-					<select name='select_4' id='id6' >
-						<option value='24'>24</option>
-						<option value='36'>36</option>
-						<option value='48'>48</option>
-					</select>
-				</div>		
 			</main>
         </div>
         <footer class='text-center'>

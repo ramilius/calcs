@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$page_name</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class='header_top_row row'>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-chevron-left'></i>
+                    </div>
+                    <div class='col-xs-20 text-center'>Индекс тяжести пневмонии</div>
+                    <div class='col-xs-2 right_icon text-center'>
+                        <i class='glyphicon glyphicon-floppy-save'></i>
+                    </div>
+                </div>
+                <div class='header_botttom_row'>
+                    <ul>
+                        <li class='active'>Рассчет</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </header>
+            
+            <main>
+			
+				<script>
+
+					function calculation() {
+					var 
+						 
+					id1 = Number(document.getElementById('id1').value),
+					id2 = Number(document.getElementById('id2').value),	
+					id3 = Number(document.getElementById('id3').value),
+					id4 = Number(document.getElementById('id4').value),
+					id5 = Number(document.getElementById('id5').value),
+					id6 = Number(document.getElementById('id6').value),
+					id7 = Number(document.getElementById('id7').value),
+					id8 = Number(document.getElementById('id8').value),
+					id9 = Number(document.getElementById('id9').value),
+					id10 = Number(document.getElementById('id10').value),
+					id11 = Number(document.getElementById('id11').value),	
+					id12 = Number(document.getElementById('id12').value),
+					id13 = Number(document.getElementById('id13').value),
+					id14 = Number(document.getElementById('id14').value),
+					id15 = Number(document.getElementById('id15').value),
+					id16 = Number(document.getElementById('id16').value),
+					id17 = Number(document.getElementById('id17').value),
+					id18 = Number(document.getElementById('id18').value),
+					id19 = Number(document.getElementById('id19').value),
+					id20 = Number(document.getElementById('id20').value),
+						
+					text,
+					result;
+
+					if((id1 < 1)||(id1 > 130)||(id1 == '')){ 
+						result = 'Пожалуйста, введите значение от 1 до 130.'; 
+						text = '';
+					}
+					else{
+					
+						result = id1 + id2 + id3 + id4 + id5 + id6 + id7 + id8 + id9 + id10 + id11 + id12 + id13 + id14 + id15 + id16 + id17 + id18 + id19 + id20;
+						
+						if((result >= 0)&&(result < 51)){ text = 'Класс I[Как правило, достаточно амбулаторного лечения] ,Смертность 0,1 %.'; }
+						if((result > 50)&&(result < 71)){ text = 'Класс II[Как правило, достаточно амбулаторного лечения] ,Смертность 0,6 %.'; }
+						if((result > 70)&&(result < 91)){ text = 'Класс III[Как правило, требуется госпитализация в терапевтическое отделение] ,Смертность 0,9  %.'; }
+						if((result > 90)&&(result < 131)){ text = 'Класс IV[Как правило, требуется госпитализация в ОИТ] ,Смертность 9,3 %'; }
+						if(result > 130){ text = 'Класс V[Как правило, требуется госпитализация в ОИТ] ,Смертность 27 %'; }
+						
+						result = result + ' Балл(ов)';
+						
+						}
+								
+					document.getElementById('result-score').innerHTML = result;
+					document.getElementById('result-text').innerHTML  = text;
+					
+					}
+					
+					function reset() {
+					document.getElementById('result-score').innerHTML  = 'Результат';
+					document.getElementById('result-text').innerHTML  = 'Оценка';
+					document.getElementById('id1').value = '';
+					document.getElementById('id2').value = 0;
+					document.getElementById('id3').value = 0;
+					document.getElementById('id4').value = 0;
+					document.getElementById('id5').value = 0;
+					document.getElementById('id6').value = 0;
+					document.getElementById('id7').value = 0;
+					document.getElementById('id8').value = 0;
+					document.getElementById('id9').value = 0;
+					document.getElementById('id10').value = 0;
+					document.getElementById('id11').value = 0;
+					document.getElementById('id12').value = 0;
+					document.getElementById('id13').value = 0;
+					document.getElementById('id14').value = 0;
+					document.getElementById('id15').value = 0;
+					document.getElementById('id16').value = 0;
+					document.getElementById('id17').value = 0;
+					document.getElementById('id18').value = 0;
+					document.getElementById('id19').value = 0;
+					document.getElementById('id20').value = 0;
+					}
+					
+				</script>
+				
+				<div class='input_wrapper'>
+                    <label for='id1'>Возраст,   лет</label>
+                    <input name="id1" id="id1" min="0" type="number" value="" />
+                </div>	
+				<div class='select_wrapper'>
+				    <label for='select_1'>Пол</label>
+					<select name='select_1' id='id2' >
+						<option value='10'>Мужской</option>
+						<option value='0'>Женский</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_2'>Постоянный житель дома престарелых</label>
+					<select name='select_2' id='id3'  >
+					    <option value='10'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_3'>Новообразование</label>
+					<select name='select_3' id='id4' >
+					    <option value='30'>Присутствует</option>
+						<option value='0'>Отсутствует</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_4'>Заболевания печени</label>
+					<select name='select_4' id='id5' >
+					    <option value='20'>Присутствует</option>
+						<option value='0'>Отсутствует</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_5'>Застойная сердечная недостаточность</label>
+					<select name='select_5' id='id6' >
+					    <option value='10'>Присутствует</option>
+						<option value='0'>Отсутствует</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_6'>Цереброваскулярное заболевание</label>
+					<select name='select_6' id='id7' >
+					    <option value='10'>Присутствует</option>
+						<option value='0'>Отсутствует</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_7'>Заболевание почек</label>
+					<select name='select_7' id='id8' >
+						<option value='10'>Присутствует</option>
+						<option value='0'>Отсутствует</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_8'>Измененное психическое состояние</label>
+					<select name='select_8' id='id9' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_9'>Частота дыхания ≥ 30 вдохов/мин</label>
+					<select name='select_9' id='id10' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_10'>Систолическое артериальное давление < 90 мм рт. ст.</label>
+					<select name='select_10' id='id11' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_11'>Температура тела <35°С (95°F) или ≥ 40 °С (104°F)</label>
+					<select name='select_11' id='id12' >
+						<option value='15'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_12'>Пульс ≥ 125 ударов/мин</label>
+					<select name='select_12' id='id13' >
+					    <option value='10'>Да</option>
+						<option value='0'>Нет</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_13'>РН артериальной крови < 7,35</label>
+					<select name='select_13' id='id14' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_14'>Уровень азота мочевины в крови ≥ 30 мг/дл</label>
+					<select name='select_14' id='id15' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_15'>Уровень натрия < 130 ммоль/л</label>
+					<select name='select_15' id='id16' >
+					    <option value='20'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_16'>Уровень глюкозы ≥ 250 мг/дл</label>
+					<select name='select_16' id='id17' >
+					    <option value='10'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_17'>Гематокрит < 30 %</label>
+					<select name='select_17' id='id18' >
+					    <option value='10'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_18'>Парциальное давление 0(2) в артериальной крови < 60 мм рт. ст. или насыщение 0(2) < 90 %</label>
+					<select name='select_18' id='id19' >
+					    <option value='10'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+				<div class='select_wrapper'>
+				    <label for='select_19'>Плевральный выпот</label>
+					<select name='select_19' id='id20' >
+						<option value='10'>Да</option>
+						<option value='0'>Нет</option>
+						<option value='0'>Тест не проводился</option>
+					</select>
+				</div>
+			</main>
+        </div>
+        <footer class='text-center'>
+            <div class='result_title' id='result-score'>Результат</div>
+            <div class='result' id='result-text'>Оценка</div>
+            <div class='row button_row'>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='clear_button' onclick='reset()'>Сбросить</button>
+                </div>
+                <div class='col-xs-12 button_wrapper'>
+                    <button class='result_button' onclick='calculation()'>Рассчитать</button>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
